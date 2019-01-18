@@ -1,3 +1,4 @@
+lib_LTLIBRARIES    = libomega.la
 noinst_LIBRARIES   = libomega.a
 
 basic_src   =../../basic/src/ConstString.cc
@@ -45,4 +46,10 @@ fancy_src  +=../src/reach.cc
 
 libomega_a_SOURCES  =$(basic_src) $(oc_src) $(pres_src) $(rel_src) $(fancy_src)
 libomega_a_CPPFLAGS =-I$(srcdir)/../include -I$(srcdir)/../../basic/include
-libomega_a_CXXFLAGS =-std=c++11
+libomega_a_CXXFLAGS =-std=c++11 -fPIC -ftest-coverage -fprofile-arcs
+
+libomega_la_SOURCES  =$(basic_src) $(oc_src) $(pres_src) $(rel_src) $(fancy_src)
+libomega_la_LDFLAGS  =-shared -lgcov
+libomega_la_CPPFLAGS =-I$(srcdir)/../include -I$(srcdir)/../../basic/include
+libomega_la_CXXFLAGS =-std=c++11 -fPIC -ftest-coverage -fprofile-arcs
+
